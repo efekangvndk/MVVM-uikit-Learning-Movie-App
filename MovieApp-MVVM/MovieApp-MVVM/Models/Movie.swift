@@ -7,15 +7,20 @@
 
 import Foundation
 
-struct Movie {
+struct Movie : Decodable{
      //Normalde bunlara değer gelmeli ancak gelmeme ihtimaline karşın biz değişkenleri optional yapalım ki ilerde patlamasın.
-    let page : Int?
-    let result : [movireResult]?
-    let total_pages : Int?
-    let total_results : Int?
+    let results : [movireResult]?
+   /* let total_pages : Int?
+    let total_results : Int? --> Gereksiz kullanmıycaz. 
+    let page : Int?*/
 }
 
-struct movireResult{
+struct movireResult: Decodable{
     let id: Int?
-    let poster_path : String?
+    let posterPath : String?
+    
+    enum codingKeys : String, CodingKey{
+        case id
+        case posterPath = "poster_path"
+    }
 }
