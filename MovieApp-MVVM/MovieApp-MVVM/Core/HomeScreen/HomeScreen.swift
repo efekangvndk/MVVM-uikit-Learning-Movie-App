@@ -39,6 +39,9 @@ extension HomeScreen: HomeScreenInterface{
         view.addSubview(colleectionView)
         
         colleectionView.translatesAutoresizingMaskIntoConstraints = false
+        colleectionView.delegate = self
+        colleectionView.dataSource = self
+        colleectionView.register(MovieCell.self, forCellWithReuseIdentifier: MovieCell.reuseID)
         colleectionView.pinToEdgeOf(view: view)
     }
 }
@@ -49,7 +52,8 @@ extension HomeScreen : UICollectionViewDelegate , UICollectionViewDataSource{
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        UICollectionViewCell()
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCell.reuseID, for: indexPath) as! MovieCell
+        return cell 
     }
     
     
