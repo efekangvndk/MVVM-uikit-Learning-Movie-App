@@ -23,7 +23,7 @@ final  class HomeScreen: UIViewController { //HomeScreen sınıfı ve bu bir UIV
         super.viewDidLoad()
         
         viewModel.view = self  //Burda viewModel.View için HomeScreen Sensin kardeş dedik yani HomeScreen'i ViewModel--> HomeViewModele-->view'a ulaş ve onu kendni yap dedik
-        viewModel.viewDidload()//viewDidLoad çalıştığında ViewModeldaki viewDidload çalışsın dedik.
+        viewModel.viewDidLoad()//viewDidLoad çalıştığında ViewModeldaki viewDidload çalışsın dedik.
     }
 
 
@@ -48,7 +48,7 @@ extension HomeScreen: HomeScreenInterface{
 
 extension HomeScreen : UICollectionViewDelegate , UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        10
+        viewModel.movies.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

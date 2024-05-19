@@ -9,13 +9,13 @@ import Foundation
 
 struct Movie : Decodable{
      //Normalde bunlara değer gelmeli ancak gelmeme ihtimaline karşın biz değişkenleri optional yapalım ki ilerde patlamasın.
-    let results : [movireResult]?
+    let results : [MovieResult]?
    /* let total_pages : Int?
     let total_results : Int? --> Gereksiz kullanmıycaz. 
     let page : Int?*/
 }
 
-struct movireResult: Decodable{
+struct MovieResult: Decodable{
     let id: Int?
     let posterPath : String?
     

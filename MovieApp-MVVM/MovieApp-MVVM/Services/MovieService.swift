@@ -3,14 +3,15 @@
 //
 //
 //
+
 //MARK: İndirme işlemleri.
 import Foundation
 
-class MovieServices {
+class MovieService {
     
-    func downloadManegeMovies(completion: @escaping([movireResult]?) -> ()){
-        guard let url = URL(string: APIURLS.movies(page: 1)) else
-        {return}
+    func downloadMovies(completion: @escaping ([MovieResult]?) -> ()) {
+        guard let url = URL(string: APIURLS.movies(page: 1)) else {return}
+        
         NetworkManager.shared.download(url: url) { [weak self] result in //sistem @escaping closure ile çalıştığından bunları bir weak self olarak tanımlamamız ve kullanmamız lazım.
             guard let self = self else { return }
             
@@ -27,10 +28,10 @@ class MovieServices {
         print(error.localizedDescription)
     }
     
-    private func handleWithData(_ data : Data)-> [movireResult]?{
+    private func handleWithData(_ data : Data) -> [MovieResult]?{
         do {
             let movie = try JSONDecoder().decode(Movie.self, from: data)
-            return movie.results 
+            return movie.results
         } catch {
             print(error)
             return nil

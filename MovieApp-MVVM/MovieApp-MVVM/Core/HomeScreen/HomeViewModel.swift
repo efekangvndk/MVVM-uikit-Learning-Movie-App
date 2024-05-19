@@ -7,21 +7,34 @@
 
 import Foundation
 
-//MARK: BAĞLANTI --> HomeViewModel ile HomeView arasında herhangi bir iletişim yok bunun kısıtlı olması ve iletişim sağlamasını da protocoller ile sağlıycaz.
-protocol HomeViewModelInterface{
-    var view: HomeScreenInterface?{get set }
-    func viewDidload()
+protocol HomeViewModelInteface {
+    var view: HomeScreenInterface? { get set }
+    
+    func viewDidLoad()
+    func getMovies()
 }
 
-final class HomeViewModel { //final açtıkkı başka bir mirascısı olmasın ve genişletilemsin buda bize performans olarak geri dönüş sağlar.
+final class HomeViewModel {
     weak var view: HomeScreenInterface?
+    private let service = MovieService()
+    var movies: [MovieResult] = []
+    
 }
-
-extension HomeViewModel : HomeViewModelInterface{ //Bu bir genişletme değil HomeViewModel sınıfının HomeViewModelInterface protokolünü uyguladığını belirtir.
-    func viewDidload() {
+extension HomeViewModel: HomeViewModelInteface {
+    
+    func viewDidLoad() {
         view?.configureVC()
         view?.configureCollectionView()
+        getMovies()
     }
     
-    
+    func getMovies() {
+        service.downloadMovies { [weak self] returnedMovies in
+            guard let self = self else { return }
+            guard let returnedMovies = returnedMovies else { return }
+            
+            self.movies = returnedMovies
+           
+        }
+    }
 }
