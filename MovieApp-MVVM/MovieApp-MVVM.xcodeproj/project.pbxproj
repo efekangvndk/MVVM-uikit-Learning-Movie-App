@@ -141,8 +141,8 @@
 		AB8CCD852BFA580E00D443C6 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				AB8CCD862BFA582200D443C6 /* UIView+Ext.swift */,
 				AB8CCD8B2BFA614B00D443C6 /* CGFloat+Ext.swift */,
+				AB8CCD862BFA582200D443C6 /* UIView+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
