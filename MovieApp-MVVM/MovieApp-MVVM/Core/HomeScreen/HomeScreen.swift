@@ -9,11 +9,15 @@ import UIKit
 
 protocol HomeScreenInterface : AnyObject{
     func configureVC()
+    func configureCollectionView()
 }
+
+
 
 final  class HomeScreen: UIViewController {
 
     private let ViewModel = HomeViewModel()
+    private var colleectionView : UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,5 +32,13 @@ final  class HomeScreen: UIViewController {
 extension HomeScreen: HomeScreenInterface{
     func configureVC() {
         view.backgroundColor = .systemPink
+        
+    }
+    func configureCollectionView() {
+        colleectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
+        view.addSubview(colleectionView)
+        
+        colleectionView.translatesAutoresizingMaskIntoConstraints = false
+        
     }
 }
