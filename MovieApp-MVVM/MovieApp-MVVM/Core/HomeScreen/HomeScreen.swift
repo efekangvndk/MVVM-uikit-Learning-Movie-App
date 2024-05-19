@@ -7,20 +7,26 @@
 
 import UIKit
 
-protocol HomeScreenInterface {
-    
+protocol HomeScreenInterface : AnyObject{
+    func configureVC()
 }
 
 final  class HomeScreen: UIViewController {
 
+    private let ViewModel = HomeViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBlue
+        
+        ViewModel.view = self
+        ViewModel.viewDidload()
     }
 
 
 }
 
 extension HomeScreen: HomeScreenInterface{
-    
+    func configureVC() {
+        view.backgroundColor = .systemPink
+    }
 }
