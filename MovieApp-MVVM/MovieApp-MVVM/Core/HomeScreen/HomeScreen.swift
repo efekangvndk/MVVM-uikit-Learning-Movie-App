@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol HomeScreenInterface {
+    
+}
+
 final  class HomeScreen: UIViewController {
 
     override func viewDidLoad() {
@@ -17,3 +21,6 @@ final  class HomeScreen: UIViewController {
 
 }
 
+extension HomeScreen: HomeScreenInterface{
+    
+}
