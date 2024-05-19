@@ -20,6 +20,7 @@ final class HomeViewModel { //final açtıkkı başka bir mirascısı olmasın v
 extension HomeViewModel : HomeViewModelInterface{ //Bu bir genişletme değil HomeViewModel sınıfının HomeViewModelInterface protokolünü uyguladığını belirtir.
     func viewDidload() {
         view?.configureVC()
+        view?.configureCollectionView()
     }
     
     

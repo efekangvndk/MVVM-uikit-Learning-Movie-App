@@ -7,38 +7,50 @@
 
 import UIKit
 
-protocol HomeScreenInterface : AnyObject{
+protocol HomeScreenInterface : AnyObject{ //Bu bir protokoldür ve AnyObject ile bu protkolü funclar ile de kullanabiliriz. (Araştır)
     func configureVC()
     func configureCollectionView()
 }
 
 
 
-final  class HomeScreen: UIViewController {
+final  class HomeScreen: UIViewController { //HomeScreen sınıfı ve bu bir UIViewController'dır.
 
-    private let ViewModel = HomeViewModel()
+    private let viewModel = HomeViewModel() //Bir viewModel değişkeni yaptık ve bunu homeViewModel nesnesini yap dedik.
     private var colleectionView : UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        ViewModel.view = self
-        ViewModel.viewDidload()
+        viewModel.view = self  //Burda viewModel.View için HomeScreen Sensin kardeş dedik yani HomeScreen'i ViewModel--> HomeViewModele-->view'a ulaş ve onu kendni yap dedik
+        viewModel.viewDidload()//viewDidLoad çalıştığında ViewModeldaki viewDidload çalışsın dedik.
     }
 
 
 }
 
-extension HomeScreen: HomeScreenInterface{
+extension HomeScreen: HomeScreenInterface{ 
     func configureVC() {
-        view.backgroundColor = .systemPink
+        view.backgroundColor = .systemGray
         
     }
     func configureCollectionView() {
-        colleectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
+        colleectionView = UICollectionView(frame: .zero, collectionViewLayout: UIHelper.creatHomeFlowLayout())
         view.addSubview(colleectionView)
         
         colleectionView.translatesAutoresizingMaskIntoConstraints = false
-        
+        colleectionView.pinToEdgeOf(view: view)
     }
+}
+
+extension HomeScreen : UICollectionViewDelegate , UICollectionViewDataSource{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        UICollectionViewCell()
+    }
+    
+    
 }
